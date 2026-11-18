@@ -1,0 +1,11 @@
+RBT Security PHP2Shell Lab
+Copyright (c) 2026 RBT Security
+
+This repository ships a knowingly vulnerable, isolated Docker lab so defenders,
+instructors, and researchers can understand CVE-2026-109618 and CVE-2026-109619
+(session.upload_progress / RFC 1867 memory-safety issues in php-src).
+
+It does not include an exploit, reverse shell, or weaponized payload.
+
+Official PHP images are trademarks of their respective owners. This project is
+not affiliated with the PHP Group.

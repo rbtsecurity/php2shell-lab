@@ -1,0 +1,29 @@
+# RBT Security - PHP2Shell defender lab
+#
+#   ./up.sh
+#   curl http://127.0.0.1:8105/?probe=1
+#   open http://127.0.0.1:8105/
+#   ./down.sh
+#
+# Builds local image FROM php:8.4.26-apache + classroom tools.
+# Patched contrast: change Dockerfile FROM to php:8.4.27-apache, then rebuild.
+# Default bind is localhost only. Change the ports line for a firewalled classroom LAN.
+services:
+  lab:
+    build: .
+    image: rbt-p2s-lab:8.4.26
+    container_name: rbt-p2s-lab
+    labels:
+      lab.vendor: "RBT Security"
+      lab.purpose: "php2shell defender lab / CVE-2026-109618 / CVE-2026-109619"
+    ports:
+      - "127.0.0.1:8105:80"
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - ./webroot:/var/www/html:ro
+      - ./php.ini:/usr/local/etc/php/conf.d/zz-lab.ini:ro
+      - ./apache.conf:/etc/apache2/conf-enabled/zz-lab.conf:ro
+      - ./out:/out

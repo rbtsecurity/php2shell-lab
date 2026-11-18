@@ -1,0 +1,14 @@
+# Proof / runtime drop (keep directory via .gitkeep)
+out/*
+!out/.gitkeep
+
+# Editor / OS
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
+
+# Local overrides
+docker-compose.override.yml
+.env
